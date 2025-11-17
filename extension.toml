@@ -8,11 +8,12 @@ repository = "https://github.com/croustibat/zed-laravel"
 
 [grammars.blade]
 repository = "https://github.com/EmranMR/tree-sitter-blade"
-rev = "v0.12.3"
+commit = "cc764dadcbbceb3f259396fef66f970c72e94f96"
 
-[grammars.php]
+[grammars.php_only]
 repository = "https://github.com/tree-sitter/tree-sitter-php"
-rev = "v0.24.2"
+commit = "b2278dbac9d58b02653fe6a8530ccebc492e4ed4"
+path = "php_only"
 
 [language_servers.laravel-ls]
 name = "Laravel Language Server"
@@ -20,4 +21,5 @@ language = "Blade"
 
 [language_servers.intelephense]
 name = "Intelephense"
-language = "PHP"
+language = "Blade"
+language_ids = { Blade = "blade" }
