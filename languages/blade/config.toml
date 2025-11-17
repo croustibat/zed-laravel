@@ -1,0 +1,23 @@
+name = "Blade"
+grammar = "blade"
+path_suffixes = ["blade.php"]
+line_comments = ["{{-- "]
+block_comment = ["{{-- ", " --}}"]
+autoclose_before = ";:.,=}])>"
+word_characters = ["_"]
+
+[brackets]
+"(" = ")"
+"[" = "]"
+"{" = "}"
+"<" = ">"
+"@if" = "@endif"
+"@foreach" = "@endforeach"
+"@for" = "@endfor"
+"@while" = "@endwhile"
+"@section" = "@endsection"
+"@push" = "@endpush"
+"@php" = "@endphp"
+
+[language_servers]
+servers = ["laravel-ls", "intelephense"]

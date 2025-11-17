@@ -1,0 +1,19 @@
+[package]
+name = "zed-blade-enhanced"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Enhanced Laravel Blade support for Zed Editor"
+repository = "https://github.com/croustibat/zed-blade-enhanced"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+zed_extension_api = "0.7.0"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true

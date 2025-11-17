@@ -1,0 +1,21 @@
+# Rust / Cargo
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Zed Extension builds
+*.wasm
+/laravel-ls-*/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp

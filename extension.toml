@@ -1,0 +1,19 @@
+id = "blade-enhanced"
+name = "Laravel Blade Enhanced"
+version = "0.1.0"
+schema_version = 1
+authors = ["croustibat <https://github.com/croustibat>"]
+description = "Enhanced Laravel Blade support with Go to Definition, autocomplete, and improved syntax highlighting"
+repository = "https://github.com/croustibat/zed-blade-enhanced"
+
+[grammars.blade]
+repository = "https://github.com/EmranMR/tree-sitter-blade"
+rev = "v0.14.0"
+
+[language_servers.laravel-ls]
+name = "Laravel Language Server"
+language = "Blade"
+
+[language_servers.intelephense]
+name = "Intelephense"
+language = "Blade"
