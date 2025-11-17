@@ -1,11 +1,11 @@
 use zed_extension_api::{self as zed, Result};
 use std::fs;
 
-struct BladeEnhancedExtension {
+struct LaravelExtension {
     cached_laravel_ls_binary: Option<String>,
 }
 
-impl zed::Extension for BladeEnhancedExtension {
+impl zed::Extension for LaravelExtension {
     fn new() -> Self {
         Self {
             cached_laravel_ls_binary: None,
@@ -140,7 +140,7 @@ impl zed::Extension for BladeEnhancedExtension {
     }
 }
 
-impl BladeEnhancedExtension {
+impl LaravelExtension {
     fn get_laravel_ls_binary(
         &mut self,
         language_server_id: &zed::LanguageServerId,
@@ -228,4 +228,4 @@ impl BladeEnhancedExtension {
     }
 }
 
-zed::register_extension!(BladeEnhancedExtension);
+zed::register_extension!(LaravelExtension);

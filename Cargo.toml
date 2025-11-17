@@ -1,10 +1,10 @@
 [package]
-name = "zed-blade-enhanced"
-version = "0.1.0"
+name = "zed-laravel"
+version = "0.2.0"
 edition = "2021"
 license = "MIT"
-description = "Enhanced Laravel Blade support for Zed Editor"
-repository = "https://github.com/croustibat/zed-blade-enhanced"
+description = "Complete Laravel support for Zed Editor: Blade, PHP, Pint, Artisan, snippets"
+repository = "https://github.com/croustibat/zed-laravel"
 
 [lib]
 crate-type = ["cdylib"]

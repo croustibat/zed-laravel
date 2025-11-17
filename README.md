@@ -1,187 +1,214 @@
-# Laravel Blade Enhanced for Zed
+# Laravel Extension for Zed Editor
 
-Enhanced Laravel Blade support for [Zed Editor](https://zed.dev) with Go to Definition, autocomplete, and improved syntax highlighting.
+**Complete Laravel development experience for Zed Editor** - Blade templates, PHP, Pint formatting, IntelliSense, snippets, and more.
 
-## Features
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-✨ **Go to Definition** - Ctrl+Click on `@include('view.name')` to jump to the file
-🔍 **Autocomplete** - Smart suggestions for view paths as you type
-🎨 **Enhanced Syntax Highlighting** - Improved highlighting for all Blade directives
-⚠️ **Diagnostics** - Warnings for non-existent views and syntax errors
-🚀 **Laravel LSP Integration** - Powered by [laravel-ls](https://github.com/laravel-ls/laravel-ls)
-🧠 **PHP IntelliSense** - Full PHP support via Intelephense for embedded PHP code
+## ✨ Features
 
-## Installation
+### 🎨 Blade Template Support
+- **Go to Definition** - Ctrl/Cmd+Click on `@include('view.name')` to jump to files
+- **Autocomplete** - Smart suggestions for view paths, routes, and config
+- **Syntax Highlighting** - Enhanced highlighting via tree-sitter-blade v0.14.0
+- **Diagnostics** - Warnings for non-existent views and syntax errors
 
-### Prerequisites
+### 🐘 PHP Development
+- **IntelliSense** - Full PHP autocompletion via Intelephense
+- **Laravel Pint** - Automatic code formatting (format on save or Cmd/Ctrl+Shift+I)
+- **Syntax Highlighting** - Via tree-sitter-php
+- **Laravel-specific** - Facades, helpers, and Laravel patterns support
 
-- [Zed Editor](https://zed.dev) installed
-- A Laravel project
+### 📝 Code Snippets (120+ snippets included)
 
-### Automatic Installation (Recommended)
+**Blade Templates (40+ snippets)**:
+- Control structures: `@if`, `@foreach`, `@for`, `@while`
+- Templates: `@extends`, `@section`, `@yield`, `@include`
+- Components: `component`, `slot`, `@props`
+- Auth: `@auth`, `@guest`, `@can`
+- Helpers: `@csrf`, `@method`, `@error`
+
+**PHP Laravel (50+ snippets)**:
+- Routes: `route`, `routepost`, `routeres`
+- Eloquent: `hasMany`, `belongsTo`, `belongsToMany`
+- Artisan: Controllers, Models, Migrations
+- Jobs, Events, Listeners, Middleware, Policies
+
+**Livewire 3 (30+ snippets)**:
+- Components, Properties, Lifecycle
+- `wire:model`, `wire:click`, `wire:loading`
+- Forms, file uploads, pagination
+
+### 🚀 Language Servers
+
+- **Laravel LS** - Auto-downloaded, handles Laravel-specific features
+- **Intelephense** - PHP language server for code intelligence
+
+## 📦 Installation
+
+### Via Zed Extensions (Recommended - Coming Soon)
 
 1. Open Zed Editor
-2. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Linux/Windows)
-3. Type "extensions" and select "zed: extensions"
-4. Search for "Laravel Blade Enhanced"
+2. Press `Cmd+Shift+P` / `Ctrl+Shift+P`
+3. Type "extensions" → "zed: extensions"
+4. Search for "Laravel"
 5. Click "Install"
 
-### Manual Installation (Development)
+### Manual Installation (For Now)
 
-1. Clone this repository:
 ```bash
-git clone https://github.com/croustibat/zed-blade-enhanced.git
-cd zed-blade-enhanced
-```
-
-2. Build the extension:
-```bash
+git clone https://github.com/croustibat/zed-laravel.git
+cd zed-laravel
 cargo build --target wasm32-wasip1 --release
 ```
 
-3. Install as dev extension in Zed:
-   - Open Zed
-   - Press `Cmd+Shift+P` / `Ctrl+Shift+P`
-   - Type "install dev extension"
-   - Select the `zed-blade-enhanced` directory
+Then in Zed:
+- `Cmd+Shift+P` → "install dev extension"
+- Select the `zed-laravel` directory
 
-## Usage
+## 🎯 Usage
 
 ### Go to Definition
 
-Simply **Ctrl+Click** (or **Cmd+Click** on Mac) on any Blade include directive:
+Ctrl/Cmd+Click on Blade directives:
 
 ```blade
-@include('components.header')  {{-- Ctrl+Click to jump to header.blade.php --}}
-@include('emails.welcome', ['user' => $user])
+@include('components.header')  {{-- Jump to file --}}
+@extends('layouts.app')
 ```
 
 ### Autocomplete
 
-Start typing a view path and get intelligent suggestions:
+Start typing for suggestions:
 
 ```blade
-@include('  {{-- Start typing, get autocomplete suggestions --}}
+@include('  {{-- Shows all views --}}
 ```
 
-### Supported Directives
+### Laravel Pint Formatting
 
-The extension provides enhanced support for:
+- **Auto**: Enable format on save
+- **Manual**: `Cmd+Shift+I` / `Ctrl+Shift+I`
 
-- `@include` - Include partials
-- `@extends` - Template inheritance
-- `@component` - Blade components
-- `@each` - Iterate over arrays
-- All standard Blade directives with proper syntax highlighting
+### Snippets
 
-## Configuration
+Type prefix + Tab:
 
-### Laravel Language Server
+```blade
+@if<Tab>      →  if/endif block
+@foreach<Tab>  →  foreach loop
+```
 
-The extension automatically downloads and configures [laravel-ls](https://github.com/laravel-ls/laravel-ls). No additional configuration needed!
+```php
+route<Tab>   →  Route definition
+hasMany<Tab>  →  Eloquent relationship
+```
 
-### Intelephense
+## 📋 Optional: Artisan Tasks
 
-For PHP code within Blade templates, the extension uses Intelephense. Make sure you have it installed:
+Copy tasks template to your project:
 
 ```bash
-npm install -g intelephense
+mkdir -p .zed
+cp path/to/zed-laravel/templates/tasks.json .zed/tasks.json
 ```
 
-### Customizing Settings
+Access with `Cmd+Shift+T` / `Ctrl+Shift+T`:
+- Artisan Serve, Migrate, Tinker
+- Pint Format, PHPUnit/Pest
+- NPM dev/build, Composer install
 
-Add to your Zed `settings.json`:
+See `templates/README.md` for details.
+
+## ⚙️ Configuration
+
+### Recommended Zed Settings
 
 ```json
 {
   "languages": {
     "Blade": {
       "tab_size": 4,
-      "format_on_save": false,
-      "preferred_line_length": 120
+      "format_on_save": false
+    },
+    "PHP": {
+      "tab_size": 4,
+      "format_on_save": "on"
     }
   }
 }
 ```
 
-## How It Works
-
-This extension combines multiple technologies:
-
-1. **Tree-sitter-blade** - Fast, accurate syntax parsing
-2. **Laravel Language Server** - Provides Go to Definition, autocomplete, and diagnostics
-3. **Intelephense** - Handles PHP code embedded in Blade templates
-4. **Zed Extension API** - Seamless integration with Zed Editor
-
-## Troubleshooting
-
-### Extension not working?
-
-1. Check that you have a Laravel project open
-2. Verify that `laravel-ls` is running:
-   - Open Zed's language server output panel
-   - Look for "Laravel Language Server" status
-
-### Go to Definition not working?
-
-Make sure your view files are in standard Laravel locations:
-- `resources/views/`
-- `vendor/{package}/resources/views/` (for packages)
-
-### Autocomplete not showing?
-
-Ensure your Laravel project structure is correct and the extension can find your views directory.
-
-## Development
-
-### Building from Source
+### Prerequisites
 
 ```bash
-# Install Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# Install Intelephense globally (recommended)
+npm install -g intelephense
 
-# Add WASM target
-rustup target add wasm32-wasip1
+# Laravel Pint (in your project)
+composer require laravel/pint --dev
+```
 
-# Build the extension
+## 🛠️ Development
+
+```bash
+# Build extension
+./build.sh
+
+# Or manually
 cargo build --target wasm32-wasip1 --release
 ```
 
-### Testing
+See `TESTING.md` for testing procedures.
 
-```bash
-# Run with debug output
-zed --foreground
-```
+## 🐛 Troubleshooting
 
-### Contributing
+**Laravel LS not starting?**
+- Check logs: `View` → `Language Server Logs`
+- Install manually: `go install github.com/laravel-ls/laravel-ls/cmd/laravel-ls@latest`
 
-Contributions are welcome! Please:
+**Pint not working?**
+- Ensure `./vendor/bin/pint` exists
+- Check `composer require laravel/pint --dev`
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+**Go to Definition fails?**
+- Verify Laravel project structure
+- Restart language server: `Cmd+Shift+P` → "restart language server"
 
-## Related Projects
+## 📚 Resources
 
-- [zed-for-laravel](https://github.com/croustibat/zed-for-laravel) - Complete Zed configuration kit for Laravel
-- [tree-sitter-blade](https://github.com/EmranMR/tree-sitter-blade) - Blade grammar for tree-sitter
-- [laravel-ls](https://github.com/laravel-ls/laravel-ls) - Language server for Laravel
+- [Zed Editor](https://zed.dev)
+- [Laravel Docs](https://laravel.com/docs)
+- [Laravel Pint](https://laravel.com/docs/pint)
+- [laravel-ls](https://github.com/laravel-ls/laravel-ls)
 
-## License
+## 🤝 Contributing
 
-MIT License - see [LICENSE](LICENSE) file for details
+Contributions welcome! Fork, branch, commit, push, PR.
 
-## Credits
+## 📄 License
 
-- Created by [croustibat](https://github.com/croustibat)
-- Powered by [laravel-ls](https://github.com/laravel-ls/laravel-ls)
-- Uses [tree-sitter-blade](https://github.com/EmranMR/tree-sitter-blade) grammar
-- Built for [Zed Editor](https://zed.dev)
+MIT - see [LICENSE](LICENSE)
 
-## Support
+## 🙏 Credits
 
-- 🐛 [Report Issues](https://github.com/croustibat/zed-blade-enhanced/issues)
-- 💬 [Discussions](https://github.com/croustibat/zed-blade-enhanced/discussions)
-- ⭐ Star this repo if you find it useful!
+- **EmranMR** - tree-sitter-blade
+- **laravel-ls team** - Laravel Language Server
+- **Zed team** - Zed Editor
+- **croustibat** - Extension integration
+
+## 🌟 Related
+
+- [zed-for-laravel](https://github.com/croustibat/zed-for-laravel) - Themes & settings kit
+
+*Use together for complete Laravel experience!*
+
+## 📞 Support
+
+- 🐛 [Issues](https://github.com/croustibat/zed-laravel/issues)
+- 💬 [Discussions](https://github.com/croustibat/zed-laravel/discussions)
+- ⭐ Star if useful!
+
+---
+
+**Made with ❤️ for the Laravel community**
+*Generated with [Claude Code](https://claude.com/claude-code)*
