@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Build script for Laravel Blade Enhanced Zed Extension
+# Build script for Laravel Zed Extension
 
 set -e  # Exit on error
 
-echo "🔨 Building Laravel Blade Enhanced extension..."
+echo "🔨 Building Laravel extension..."
 echo ""
 
 # Check if Rust is installed
@@ -25,12 +25,12 @@ echo "🔧 Compiling extension to WASM..."
 cargo build --target wasm32-wasip1 --release
 
 # Check if build succeeded
-if [ -f "target/wasm32-wasip1/release/zed_blade_enhanced.wasm" ]; then
-    SIZE=$(du -h target/wasm32-wasip1/release/zed_blade_enhanced.wasm | cut -f1)
+if [ -f "target/wasm32-wasip1/release/zed_laravel.wasm" ]; then
+    SIZE=$(du -h target/wasm32-wasip1/release/zed_laravel.wasm | cut -f1)
     echo ""
     echo "✅ Build successful!"
     echo "📦 Extension size: $SIZE"
-    echo "📁 Location: target/wasm32-wasip1/release/zed_blade_enhanced.wasm"
+    echo "📁 Location: target/wasm32-wasip1/release/zed_laravel.wasm"
     echo ""
     echo "📋 Next steps:"
     echo "  1. Open Zed Editor"

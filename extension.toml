@@ -1,6 +1,6 @@
 id = "laravel"
 name = "Laravel"
-version = "0.2.0"
+version = "0.2.1"
 schema_version = 1
 authors = ["croustibat <https://github.com/croustibat>"]
 description = "Complete Laravel support: Blade templates, PHP, Pint formatting, Artisan commands, snippets, and more"
